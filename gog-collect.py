@@ -97,31 +97,3 @@ def reviews_full_data(game_id, pages):
         time.sleep(0.33)
         
     return full_data
-reviews_agg_storage = []
-reviews_data_storage = pd.DataFrame()
-
-ids_list = list(pd.read_csv('out.csv')['id'])
-files_page = 10
-for i in ids_list[9000:]:
-    agg_data, full_data, pages = reviews_agg_data_plus(i)
-    
-    reviews_agg_storage.append(agg_data)
-    reviews_data_storage = pd.concat([reviews_data_storage, full_data], ignore_index = True)
-    if len(reviews_agg_storage) > 1000:
-        df = pd.DataFrame(reviews_agg_storage)
-        df.to_csv("reviews_agg_data_{}.csv".format(files_page))
-        reviews_data_storage.to_csv("reviews_data_{}.csv".format(files_page))
-        reviews_agg_storage = []
-        reviews_data_storage = pd.DataFrame()
-        files_page+=1
-        
-    
-    time.sleep(0.10)
-    
-df = pd.DataFrame(reviews_agg_storage)
-df.to_csv("reviews_agg_data_{}.csv".format(files_page))
-reviews_data_storage.to_csv("reviews_data_{}.csv".format(files_page))
-    
-#game_id = '1248282609'
-#agg_data, pages = reviews_agg_data(game_id)
-#reviews_data = reviews_full_data(game_id, pages)
