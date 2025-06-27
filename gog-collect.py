@@ -12,7 +12,7 @@ import time
 import os
 
 def games_basic_data(pages):
-    full_data = pd.DataFrame()
+    df = pd.DataFrame()
     
     
     for i in range(1, pages):
@@ -20,11 +20,11 @@ def games_basic_data(pages):
         basic_request = requests.get('https://embed.gog.com/games/ajax/filtered?mediaType=game&page={}'.format(i))
         raw_data = pd.DataFrame(json.loads(basic_request.text)['products'])
         
-        full_data= pd.concat([full_data, raw_data], ignore_index = True)
+        df= pd.concat([df, raw_data], ignore_index = True)
         time.sleep(0.33)
         
-    df = pd.json_normalize(full_data['price'])
-    df = full_data.join(df, lsuffix = "_main")
+    price_data = pd.json_normalize(df['price'])
+    df = df.join(price_data, lsuffix = "_main")
     
     return df
 
