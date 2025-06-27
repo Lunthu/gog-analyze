@@ -9,3 +9,5 @@ The presented Python code contains 4 functions:
 **reviews_agg_data** - extracts high-level review data of the selected game + 10 reviews.
 
 **reviews_full_data** - extracts all reviews of selected game.
+
+An example CVS file is attached as an example of the request result.
