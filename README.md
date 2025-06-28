@@ -10,4 +10,4 @@ The presented Python code contains 4 functions:
 
 **reviews_full_data** - extracts all reviews of selected game.
 
-An example CVS file is attached as an example of the request result.
+An example CSV file is attached as an example of the request result.
